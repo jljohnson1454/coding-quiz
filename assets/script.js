@@ -1,6 +1,11 @@
 var timerEl = document.getElementById("countdowntimer");
-var scoreEl = document.getElementById("viewscores");
+var viewscoreEl = document.getElementById("viewscores");
 var questionEl = document.getElementById("questionmain");
+var choiceA = document.getElementById("btna");
+var choiceB = document.getElementById("btnb");
+var choiceC = document.getElementById("btnc");
+var choiceD = document.getElementById("btnd");
+var scoreEl = document.getElementById("score");
 
 var questions = [
     {question: "What is HTML?", a:"Document Object Model", b:"Hyper Text Markup Language", c:"poop", d:"shoot", answer: "green"},
@@ -14,14 +19,27 @@ function startGame() {
 document.getElementById("titlepage").className = "startHide";
 document.getElementById("question").className = "questionAppear";
 
-    for(var i = 0; i < questions.length; i++) {
-        document.getElementById("questionmain").innerHTML = questions[i].question;
-        document.getElementById("btna").innerHTML = questions[i].a;
-        document.getElementById("btnb").innerHTML = questions[i].b;
-        document.getElementById("btnc").innerHTML = questions[i].c;
-        document.getElementById("btnd").innerHTML = questions[i].d;
+//First question should appear
 
-        
+        questionEl.innerHTML = questions[0].question;
+        choiceA.innerHTML = questions[0].a;
+        choiceB.innerHTML = questions[0].b;
+        choiceC.innerHTML = questions[0].c;
+        choiceD.innerHTML = questions[0].d;
+
+
+document.getElementById("answer").onclick = function() {nextQuestion()};
+
+}
+
+function nextQuestion() {
+
+    for(var i = 0; i <= questions.length; i++) {
+        questionEl.innerHTML = questions[i].question;
+        choiceA.innerHTML = questions[i].a;
+        choiceB.innerHTML = questions[i].b;
+        choiceC.innerHTML = questions[i].c;
+        choiceD.innerHTML = questions[i].d;
          }
 
 }
@@ -50,6 +68,7 @@ var timeLeft = 30;
 
 function saveScore() {
 //use local storage to save
+document.getElementById("scoresubmit").className = "scoresubmissionAppear";
 
 if (score > localStorage.getItem("highscores")) {
     localStorage.setItem("highscores", score);

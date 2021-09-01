@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family:Georgia, 'Times New Roman', Times, serif
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 body {
@@ -28,11 +28,8 @@ button {
     background-color: purple;
     color: white;
     border-radius: 15px;
-}
-
-#btn {
-    padding: 10px 0;
-    margin: 10px 0;
+    padding: 10px 10px;
+    margin: 10px 10px;
 }
 
 .answerbox {
@@ -51,7 +48,6 @@ button {
 
 .startHide {
     display:none;
-
 }
 
 .questionbox {
@@ -59,5 +55,13 @@ button {
 }
 
 .questionAppear {
+    display: block;
+}
+
+.scoresubmission {
+    display: none;
+}
+
+.scoresubmissionAppear {
     display: block;
 }
