@@ -26,31 +26,36 @@ document.getElementById("right").className = "startHide";
 document.getElementById("wrong").className = "startHide";
 document.getElementById("question").className = "questionAppear";
 
+firstQuestion();
 //First question should appear
+}
+
+function firstQuestion() {
 
         questionEl.innerHTML = questions[0].question;
         choiceA.innerHTML = questions[0].a;
         choiceB.innerHTML = questions[0].b;
         choiceC.innerHTML = questions[0].c;
         choiceD.innerHTML = questions[0].d;
-        
-        document.getElementById("btna").onclick = function() {nextQuestion()};
-        document.getElementById("btnb").onclick = function() {nextQuestion()};
-        document.getElementById("btnc").onclick = function() {nextQuestion()};
-        document.getElementById("btnd").onclick = function() {nextQuestion()};
+    
+
+        document.getElementById("btna").onclick = function() {answerVerification()};
+        document.getElementById("btnb").onclick = function() {answerVerification()};
+        document.getElementById("btnc").onclick = function() {answerVerification()};
+        document.getElementById("btnd").onclick = function() {answerVerification()};
 
 }
 
 function answerVerification() {
-    if (choiceB.innerHTML === "poop") {
+    
+    if (choiceB = questions[i].answer) {
         console.log(score);
-        score++;
+        
         console.log(score);
-        nextQuestion();}
-        else {
-            document.getElementById("wrong").style.backgroundColor = "red";
+        nextQuestion();} else {
             score--;
-            console.log(score);
+            timeLeft -= 5;
+            
         }
 
 
@@ -68,11 +73,6 @@ function answerVerification() {
     //     console.log(score);
     //     nextQuestion();
     // }
-    
-
-
-
-
 
 function nextQuestion() {
 
@@ -122,17 +122,21 @@ function saveScore() {
 document.getElementById("scoresubmit").className = "scoresubmissionAppear";
 document.getElementById("question").className = "questionDisappear";
 
-
-if (score > localStorage.getItem("highscores")) {
     localStorage.setItem("highscores", score);
-  }
+
+// if (score > localStorage.getItem("highscores")) {
+//     localStorage.setItem("highscores", score);
+
+highScore();
 }
 
 
 function highScore() {
-    document.getElementById("start").addEventListener("click", startGame);
+    
+    var highscore = localStorage.getItem ("highscores");
+    var span = document.getElementById("scoredisplay");
 
-
+    span.innerHTML = " " + highscore;
 
 }
 
