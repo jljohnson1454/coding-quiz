@@ -8,15 +8,22 @@ var choiceD = document.getElementById("btnd");
 var scoreEl = document.getElementById("score");
 
 var questions = [
-    {question: "What is HTML?", a:"Document Object Model", b:"Hyper Text Markup Language", c:"poop", d:"shoot", answer: "green"},
-    {question: "What is CSS?", a:"Cascading Style Sheet", b:"HTML", c: "c", d:"blarh", answer: "purple"},
-    {question: "What is Javascript?", a: "Thanos", b: "bucky", c:"Steve", d:"Tony", answer: "black"},
-    {question: "Which is JQUERY?", a:"green", b:"Javascript", c:"GTA", d: "I hate you", answer: "green"},
-    {question: "What is Bootstrap?", a:"Pirate", b:"Bill", c:"Third Party API", d:"Belt", answer: "green"}
+    {question: "What is HTML?", a:"Document Object Model", b:"Hyper Text Markup Language", c:"dog", d:"skeleton", answer: "Hyper Text Markup Language"},
+    {question: "What is CSS?", a:"Cascading Style Sheet", b:"HTML", c: "c", d:"blarh", answer: "Cascading Style Sheet"},
+    {question: "What is Javascript?", a: "language", b: "Dark Souls", c:"Steve", d:"Tony", answer: "Dark Souls"},
+    {question: "What is JQUERY?", a:"green", b:"Thanos", c:"GTA", d: "Library", answer: "Library"},
+    {question: "What is Bootstrap?", a:"Pirate", b:"Bill", c:"Third Party API", d:"Belt", answer: "Third Party API"}
 ]
+var i = 0;
+var userinput = "";
+var timeLeft = 30;
+var score = 10;
 
 function startGame() {
+    
 document.getElementById("titlepage").className = "startHide";
+document.getElementById("right").className = "startHide";
+document.getElementById("wrong").className = "startHide";
 document.getElementById("question").className = "questionAppear";
 
 //First question should appear
@@ -26,27 +33,70 @@ document.getElementById("question").className = "questionAppear";
         choiceB.innerHTML = questions[0].b;
         choiceC.innerHTML = questions[0].c;
         choiceD.innerHTML = questions[0].d;
-
-
-document.getElementById("answer").onclick = function() {nextQuestion()};
+        
+        document.getElementById("btna").onclick = function() {nextQuestion()};
+        document.getElementById("btnb").onclick = function() {nextQuestion()};
+        document.getElementById("btnc").onclick = function() {nextQuestion()};
+        document.getElementById("btnd").onclick = function() {nextQuestion()};
 
 }
 
+function answerVerification() {
+    if (choiceB.innerHTML === "poop") {
+        console.log(score);
+        score++;
+        console.log(score);
+        nextQuestion();}
+        else {
+            document.getElementById("wrong").style.backgroundColor = "red";
+            score--;
+            console.log(score);
+        }
+
+
+    
+};
+    
+    // } else if (choiceA.innerHTML === questions[1].answer){
+    //     console.log(score);
+    //     score++;
+    //     console.log(score);
+    //     nextQuestion();
+    // } else if (choiceA.innerHTML === questions[2].answer) {
+    //     console.log(score);
+    //     score++;
+    //     console.log(score);
+    //     nextQuestion();
+    // }
+    
+
+
+
+
+
 function nextQuestion() {
 
-    for(var i = 0; i <= questions.length; i++) {
+    // for(var i=0; i<=questions.length; i++) 
+        i++;
+
+        if(i < questions.length) {
         questionEl.innerHTML = questions[i].question;
         choiceA.innerHTML = questions[i].a;
         choiceB.innerHTML = questions[i].b;
         choiceC.innerHTML = questions[i].c;
         choiceD.innerHTML = questions[i].d;
+            
+         } else {
+             document.getElementById("question").className = "questionbox";
+             saveScore();
          }
+
 
 }
 
 function countdown() {
 
-var timeLeft = 30;
+
 
     var timeInterval = setInterval(function() {
         if (timeLeft>0) {
@@ -60,6 +110,7 @@ var timeLeft = 30;
           } else {
             timerEl.textContent = "";
             clearInterval (timeInterval);
+            saveScore();
           }
     }, 1000);
 
@@ -69,14 +120,17 @@ var timeLeft = 30;
 function saveScore() {
 //use local storage to save
 document.getElementById("scoresubmit").className = "scoresubmissionAppear";
+document.getElementById("question").className = "questionDisappear";
+
 
 if (score > localStorage.getItem("highscores")) {
     localStorage.setItem("highscores", score);
   }
-
 }
 
+
 function highScore() {
+    document.getElementById("start").addEventListener("click", startGame);
 
 
 
