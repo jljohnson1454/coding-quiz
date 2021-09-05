@@ -9,12 +9,12 @@ The purpose of this assignment was to create a timed quiz using Javascript in ta
 -Javascript
 
 ## Website URLs
-Live Website:
+Live Website: https://jljohnson1454.github.io/coding-quiz/
 
-Github Repo:
+Github Repo: https://github.com/jljohnson1454/coding-quiz
 
 ## Screenshot
-![Screenshot] ()
+![screenshot](./assets/screenshot.png)
 
 ## References
 Bootcamp Module 4 Activities: https://github.com/the-Coding-Boot-Camp-at-UT/UTA-VIRT-BO-FSF-PT-07-2021-U-B
