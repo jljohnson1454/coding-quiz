@@ -13,32 +13,7 @@ body {
 }
 
 #title {
-    font-size:xx-large
-}
-
-main {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-button {
-    background-color: purple;
-    color: white;
-    border-radius: 15px;
-    padding: 10px 10px;
-    margin: 10px 10px;
-}
-
-.answerbox {
-    display: grid;
-}
-
-.scorebox {
-    float: left;
-    padding: 20px 20px;
+    font-size:xx-large;   
 }
 
 .countdownbox {
@@ -46,8 +21,12 @@ button {
     padding: 20px 20px;
 }
 
-.startHide {
-    display:none;
+main {
+    display: flex;
+    height: 100%;
+    width:100%;
+    justify-content: center;
+    
 }
 
 .questionbox {
@@ -56,10 +35,43 @@ button {
 
 .questionAppear {
     display: block;
+    text-align: center;
+    max-width: 50%;
 }
 
-.questionDisappear {
-    display: none;
+#questionmain {
+    text-align: center;
+    margin: auto;
+    
+}
+
+button {
+    background-color: purple;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    table-layout: fixed;
+    margin: 10px 10px;
+}
+
+.btn {
+    width: 250px;
+    margin:10px auto;
+}
+
+.answerbox {
+    display: grid;
+    text-align: center;
+    
+}
+
+.scorebox {
+    float: left;
+    padding: 20px 20px;
+}
+
+.startHide {
+    display:none;
 }
 
 .scoresubmission {
@@ -74,15 +86,15 @@ button {
     display: block;
     opacity: 70%;
     border-top: solid 5px green;
-    color: green
+    color: green;
+    padding: 10px 10px;
 }
 
 .wronganswer {
     display: block;
     opacity: 70%;
     border-top: solid 5px red;
+    padding: 10px 10px;
 }
 
-#questionmain {
-    text-align: center;
-}
+

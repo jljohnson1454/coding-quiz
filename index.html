@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,18 @@
     <link href="./assets/style.css" rel="stylesheet">
     <title>Coding Quiz</title>
 </head>
+
 <body>
-    
+    <!--Added highscores which will open to a separate page-->
     <section id="highscores" class="scorebox">
         <h2 id="viewscores"><a href="./assets/highscores.html">View High Scores</a></h2>
     </section>
 
+    <!--Countdown for the game-->
     <section id="countdown" class="countdownbox">
         <h2 id="countdowntimer">Timer</h2>
-    </section> 
-    
+    </section>
+
     <main>
         <section id="titlepage">
             <h1 id="title">Coding Quiz</h1>
@@ -26,34 +29,37 @@
             </p>
             <button id="start">Start</button>
         </section>
-        
-        
+
+        <!--This houses the questions and answers-->
         <section id="question" class="questionbox">
             <h1 id="questionmain"></h1>
             <div id="answer" class="answerbox">
                 <button id="btna" class="btn"></button>
                 <button id="btnb" class="btn"></button>
                 <button id="btnc" class="btn"></button>
-                <button id="btnd" class="btn"></button>          
+                <button id="btnd" class="btn"></button>
             </div>
             <div id="right" class="rightanswer">Correct! + 20 points</div>
             <div id="wrong" class="wronganswer">Wrong! -20 points</div>
         </section>
 
-        
-
+        <!--Score submission section-->
         <section id="scoresubmit" class="scoresubmission">
             <h1>All Done!</h1>
-            <div id = "showscore">Your total score is<span id="scoredisplay"></span></div>
+            <div id="showscore">Your total score is<span id="scoredisplay"></span></div>
             <input type="text" id="initials" max="2">
             <input type="submit" id="initSubmit">
         </section>
 
+        <!--Added sound effects for right and wrong answers-->
+        <audio id="rightsound">
+            <source src="./assets/right.wav">
+        </audio>
+        <audio id="wrongsound">
+            <source src="./assets/wrong.wav">
+        </audio>
+
     </main>
-
-    
-
-      
 
     <script src="./assets/script.js"></script>
 </body>

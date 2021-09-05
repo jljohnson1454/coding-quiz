@@ -1,30 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>High Scores</title>
 </head>
-<body>
 
-    <header>
-        <h1>Highscores</h1>
-        <div id= "highscorepage">
-            <ul id="scorelist">
-            </ul>
-        </div>
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
 
-        <button id="clear" onclick="document.getElementById('scorelist').value = ''">Clear History</button>
+    }
 
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    h1 {
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        padding: 20px 20px;
+    }
+
+    header {
+        align-content: center;
+    }
+
+    #highscorepage {
+        width: 50%;
+        margin: auto;
+        align-content: center;
+        text-align: center;
+    }
+
+    #scorelist {
+        list-style-type: none;
+        font-size: x-large;
+        padding: 20px;
+        text-align: center;
+        margin: auto;
+        align-content: center;
+    }
+
+    button {
+        font-size: x-large;
+        text-align: center;
+        margin: auto;
+        align-content: center;
+    }
+
+    .startHide {
+        display:none;
+    }
     
+</style>
+
+<body>
+    <h1>Highscores</h1>
+    <div id="highscorepage">
+        <ul id="scorelist">
+        </ul>
+        <button type="button" id="clear" onclick="deleteItems()">Clear History</button>
+    </div>
+
 </body>
 <script>
     var highscoreEl = document.getElementById("highscorepage");
     var scorelistEl = document.getElementById("scorelist");
     var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-    highscores.sort(function(a, b) {
+    highscores.sort(function (a, b) {
         var newScore1 = a;
         var newScore2 = b;
         var initialofNewScore1 = newScore1.i;
@@ -39,22 +89,24 @@
     //     return a - b;
     // });
 
-    for(var j = 0; j < highscores.length; j++)
-    {
+    for (var j = 0; j < highscores.length; j++) {
         var newScore = highscores[j];
         var initials = newScore.i;
         var captureScore = newScore.s;
 
         var list = document.createElement("li");
+
         list.textContent = initials + ": " + captureScore;
         scorelistEl.appendChild(list);
+    };
 
-        document.getElementById("clear").onclick = localStorage.clear();
-        
-    }
-    
-    
+    function deleteItems () {
+        localStorage.clear();
+        document.getElementById("scorelist").className = "startHide";
+    };
+
 
 
 </script>
+
 </html>
