@@ -97,4 +97,48 @@ button {
     padding: 10px 10px;
 }
 
+/*Adding media queries
 
+
+/* Width at 480px and below */
+@media screen and (max-width: 480px) {
+
+    *{ 
+        justify-content: center;
+        flex-direction: column;
+        margin: auto;
+        text-align: center;
+        padding: 0;
+}
+
+.countdownbox {
+    width: 100%;
+    margin: auto;
+}
+
+.scorebox {
+    margin: auto;
+    width: 100%;
+
+}
+}
+/* Width at 300px and below */
+@media screen and (max-width: 300px) {
+*{ 
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    padding: 0;
+}
+
+.countdownbox {
+    margin: 0px 100px;
+}
+
+.scorebox {
+    margin: 0px 30px;
+    
+}
+
+    }
