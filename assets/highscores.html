@@ -4,14 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/movie-quiz/index.html">
     <title>High Scores</title>
 </head>
 <body>
 
     <header>
         <h1>Highscores</h1>
+        <div id= "highscorepage">
+            <ul id="scorelist">
+            </ul>
+        </div>
+
+        <button id="clear" onclick="document.getElementById('scorelist').value = ''">Clear History</button>
 
     
 </body>
+<script>
+    var highscoreEl = document.getElementById("highscorepage");
+    var scorelistEl = document.getElementById("scorelist");
+    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+
+    highscores.sort(function(a, b) {
+        var newScore1 = a;
+        var newScore2 = b;
+        var initialofNewScore1 = newScore1.i;
+        var scoreofNewScore1 = newScore1.s;
+        var scoreofNewScore2 = newScore2.s;
+        return scoreofNewScore2 - scoreofNewScore1;
+        // return b.s - a.s
+    });
+
+    // var numArray = [140000, 104, 99];
+    // numArray.sort(function(a, b)) {
+    //     return a - b;
+    // });
+
+    for(var j = 0; j < highscores.length; j++)
+    {
+        var newScore = highscores[j];
+        var initials = newScore.i;
+        var captureScore = newScore.s;
+
+        var list = document.createElement("li");
+        list.textContent = initials + ": " + captureScore;
+        scorelistEl.appendChild(list);
+
+        document.getElementById("clear").onclick = localStorage.clear();
+        
+    }
+    
+    
+
+
+</script>
 </html>

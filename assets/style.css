@@ -70,9 +70,17 @@ button {
     display: block;
 }
 
-.rightwrong {
-    opacity: 50%;
-    border-top: solid 5px black;
+.rightanswer {
+    display: block;
+    opacity: 70%;
+    border-top: solid 5px green;
+    color: green
+}
+
+.wronganswer {
+    display: block;
+    opacity: 70%;
+    border-top: solid 5px red;
 }
 
 #questionmain {

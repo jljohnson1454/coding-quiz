@@ -6,18 +6,19 @@ var choiceB = document.getElementById("btnb");
 var choiceC = document.getElementById("btnc");
 var choiceD = document.getElementById("btnd");
 var scoreEl = document.getElementById("score");
+var initialsEl = document.getElementById("initials");
 
 var questions = [
-    {question: "What is HTML?", a:"Document Object Model", b:"Hyper Text Markup Language", c:"dog", d:"skeleton", answer: "Hyper Text Markup Language"},
-    {question: "What is CSS?", a:"Cascading Style Sheet", b:"HTML", c: "c", d:"blarh", answer: "Cascading Style Sheet"},
-    {question: "What is Javascript?", a: "language", b: "Dark Souls", c:"Steve", d:"Tony", answer: "Dark Souls"},
-    {question: "What is JQUERY?", a:"green", b:"Thanos", c:"GTA", d: "Library", answer: "Library"},
-    {question: "What is Bootstrap?", a:"Pirate", b:"Bill", c:"Third Party API", d:"Belt", answer: "Third Party API"}
+    {question: "What is HTML?", a:"Document Object Model", b:"Hyper Text Markup Language", c:"A video game", d:"Phone App", answer: "Hyper Text Markup Language"},
+    {question: "What is CSS?", a:"Cascading Style Sheet", b:"HTML", c: "Computer Style System", d:"Javascript", answer: "Cascading Style Sheet"},
+    {question: "What does Javascript add to a webpage?", a: "Pictures", b: "Nothing", c:"Styles", d:"Interactivity", answer: "Interactivity"},
+    {question: "Why use JQUERY?", a:"To order sandwiches", b:"To consolidate code", c:"JQUERY isn't real", d: "To order a PS5", answer: "To consolidate code"},
+    {question: "A network to deliver content to users in different geological locations is called _________", a:"Bootstrap", b:"CNN", c:"Content Delivery Network", d:"Git", answer: "Content Delivery Network"}
 ]
 var i = 0;
 var userinput = "";
 var timeLeft = 30;
-var score = 10;
+var score = 0;
 
 function startGame() {
     
@@ -39,29 +40,36 @@ function firstQuestion() {
         choiceD.innerHTML = questions[0].d;
     
 
-        document.getElementById("btna").onclick = function() {answerVerification()};
-        document.getElementById("btnb").onclick = function() {answerVerification()};
-        document.getElementById("btnc").onclick = function() {answerVerification()};
-        document.getElementById("btnd").onclick = function() {answerVerification()};
+        document.getElementById("btna").onclick = function()
+        {console.log(this);
+            var button = this;
+            answerVerification(button)};
+        document.getElementById("btnb").onclick = function() {answerVerification(this)};
+        document.getElementById("btnc").onclick = function() {answerVerification(this)};
+        document.getElementById("btnd").onclick = function() {answerVerification(this)};
 
 }
 
-function answerVerification() {
-    
-    if (choiceB = questions[i].answer) {
+function answerVerification(button) {
+    console.log(button);
+    if (button.innerHTML === questions[i].answer) {
+        score += 20;
         console.log(score);
-        
-        console.log(score);
-        nextQuestion();} else {
-            score--;
+        console.log(button);
+        console.log(button.innerHTML);
+        document.getElementById("right").className = "rightanswer";     
+        document.getElementById("wrong").className = "startHide";
+        } else {
+            score -= 20;
             timeLeft -= 5;
-            
+            console.log(score);
+        document.getElementById("right").className = "startHide";
+        document.getElementById("wrong").className = "wronganswer";
         }
-
-
-    
+        nextQuestion();
 };
-    
+
+
     // } else if (choiceA.innerHTML === questions[1].answer){
     //     console.log(score);
     //     score++;
@@ -96,8 +104,6 @@ function nextQuestion() {
 
 function countdown() {
 
-
-
     var timeInterval = setInterval(function() {
         if (timeLeft>0) {
             timerEl.textContent = "Timer: " + timeLeft;
@@ -122,7 +128,8 @@ function saveScore() {
 document.getElementById("scoresubmit").className = "scoresubmissionAppear";
 document.getElementById("question").className = "questionDisappear";
 
-    localStorage.setItem("highscores", score);
+    var span = document.getElementById("scoredisplay");
+    span.innerHTML = " " + score;
 
 // if (score > localStorage.getItem("highscores")) {
 //     localStorage.setItem("highscores", score);
@@ -133,12 +140,34 @@ highScore();
 
 function highScore() {
     
-    var highscore = localStorage.getItem ("highscores");
-    var span = document.getElementById("scoredisplay");
 
-    span.innerHTML = " " + highscore;
+    localStorage.setItem("JJ", score);
+
+    document.getElementById("initSubmit").addEventListener("click", function (){
+           var initials = initialsEl.value.trim();
+            if (initials === ("")) {
+                prompt("Please enter your initials");
+            } else {
+                
+                var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+                var newScore = {
+                    s: score,
+                    i: initials
+                };
+                highscores.push(newScore);
+                highscores = JSON.stringify(highscores);
+                localStorage.setItem("highscores", highscores);
+                window.location.href = "./assets/highscores.html";
+            }
+        // first capture the score from initials
+        // capture initials and score
+        // store it to the high scores page
+    });
+    
 
 }
+
+
 
 document.getElementById("start").addEventListener("click", startGame);
 document.getElementById("start").addEventListener("click", countdown);
